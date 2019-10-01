@@ -67,4 +67,7 @@
   <ItemGroup>
     <Build Include="Tables\Suppliers.sql" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Scripts\Select.sql" />
+  </ItemGroup>
 </Project>
