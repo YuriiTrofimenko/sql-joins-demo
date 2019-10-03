@@ -11,7 +11,7 @@
 */
 
 INSERT INTO [dbo].[Cities] ([name])
-	VALUES (N'Mariupol'), (N'Donetsk'), (N'Kyev');
+	VALUES (N'Mariupol'), (N'Donetsk'), (N'Kyev'), (N'X');
 
 INSERT INTO [dbo].[Suppliers] ([name], [city_id])
-	VALUES (N'A', 1), (N'B', 1), (N'C', 2), (N'D', 2), (N'E', 3);
+	VALUES (N'A', 1), (N'B', 1), (N'C', 2), (N'D', 2), (N'E', 3), (N'F', NULL);
