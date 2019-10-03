@@ -22,3 +22,48 @@ FROM [Cities] AS c
 SELECT c.[name] AS 'Город', s.[name] AS 'Поставщик'
 FROM [Cities] AS c
 	FULL JOIN [Suppliers] AS s ON (c.id = s.city_id);
+
+SELECT c2.[name]
+FROM (SELECT * FROM [Cities] AS c WHERE c.id < 3) AS c2;
+
+/* EXISTS */
+
+SELECT c.[name] AS 'Город'
+FROM [Cities] AS c
+WHERE NOT EXISTS (
+	SELECT 'X'
+	FROM [Suppliers] AS s
+	WHERE c.id = s.city_id
+);
+
+/*SELECT 'Without suppliers', COUNT(c.[name])
+FROM [Cities] AS c
+WHERE NOT EXISTS (
+	SELECT 'X'
+	FROM [Suppliers] AS s
+	WHERE c.id = s.city_id
+)
+UNION
+SELECT 'With suppliers', COUNT(c.[name])
+FROM [Cities] AS c
+WHERE EXISTS (
+	SELECT 'X'
+	FROM [Suppliers] AS s
+	WHERE c.id = s.city_id
+);*/
+
+SELECT 'Without suppliers', c.[name], c.[id]
+FROM [Cities] AS c
+WHERE NOT EXISTS (
+	SELECT 'X'
+	FROM [Suppliers] AS s
+	WHERE c.id = s.city_id
+)
+UNION
+SELECT 'With suppliers', c.[name], '0'
+FROM [Cities] AS c
+WHERE EXISTS (
+	SELECT 'X'
+	FROM [Suppliers] AS s
+	WHERE c.id = s.city_id
+);
