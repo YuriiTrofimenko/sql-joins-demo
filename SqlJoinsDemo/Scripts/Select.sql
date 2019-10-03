@@ -67,3 +67,23 @@ WHERE EXISTS (
 	FROM [Suppliers] AS s
 	WHERE c.id = s.city_id
 );
+
+SELECT c.[name], COUNT(s.[name])
+FROM [Cities] AS c INNER JOIN [Suppliers] AS s ON (c.id = s.city_id)
+GROUP BY c.[name];
+
+ALTER TABLE [dbo].[Suppliers]
+	ADD [balance] DECIMAL(10,2);
+
+SELECT * FROM Cities
+
+UPDATE [Suppliers]
+SET balance = 700
+WHERE id = 3;
+
+SELECT c.[name], SUM(s.[balance])
+FROM [Cities] AS c INNER JOIN [Suppliers] AS s ON (c.id = s.city_id)
+--WHERE c.id < 10
+WHERE c.id > 1
+GROUP BY c.[name]
+HAVING SUM(s.[balance]) <> 1000;
